@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ───────────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    @apply bg-gray-950 text-gray-100 antialiased;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/* ── Components ─────────────────────────────────────────────────────────────── */
+@layer components {
+  .input-base {
+    @apply w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5
+           text-white text-sm placeholder-gray-500
+           focus:outline-none focus:border-amber-500/60
+           transition-colors;
+  }
+
+  /* Range slider */
+  .modern-range {
+    @apply w-full h-1.5 rounded-full appearance-none cursor-pointer;
+    background: linear-gradient(to right, #f59e0b 0%, #f59e0b var(--val, 50%), #374151 var(--val, 50%), #374151 100%);
+  }
+  .modern-range::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 rounded-full bg-amber-400 border-2 border-amber-300 shadow-md cursor-pointer;
+  }
+  .modern-range::-moz-range-thumb {
+    @apply w-4 h-4 rounded-full bg-amber-400 border-2 border-amber-300 shadow-md cursor-pointer;
+    border-style: solid;
+  }
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar          { width: 6px; height: 6px; }
+::-webkit-scrollbar-track    { @apply bg-gray-900; }
+::-webkit-scrollbar-thumb    { @apply bg-gray-700 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-gray-600; }
+
+/* ── Animations ─────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.25s ease-out; }
